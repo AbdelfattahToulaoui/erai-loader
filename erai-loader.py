@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import curses
 import feedparser
 import time
@@ -35,8 +37,11 @@ def draw_borders(scr, lines, cols):
     scr.addstr(lines-5, cols-2, '╡')
 
 def loadfeed():
-    r = sys.argv[1]
-    if not r in ['720', '1080', 'all']:
+    if len(sys.argv)<2:
+        r = 'all'
+    else:
+        r = sys.argv[1]
+    if not r in ['480', '720', '1080', 'all']:
         raise Exception('Invalid resolution')
     url = 'https://www.erai-rss.info/rss-%s/'%r
     feed = feedparser.parse(url)
@@ -53,7 +58,7 @@ def main(stdscr):
     while True:
         curses.update_lines_cols()
         stdscr.noutrefresh()
-        stdscr.clear()
+        stdscr.erase()
         draw_borders(stdscr, curses.LINES, curses.COLS)
         timenow = time.time()
         full = (curses.LINES - 8)//2
