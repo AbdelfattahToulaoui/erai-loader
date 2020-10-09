@@ -60,7 +60,7 @@ def main(stdscr):
         stdscr.noutrefresh()
         stdscr.erase()
         draw_borders(stdscr, curses.LINES, curses.COLS)
-        timenow = time.time()
+        timenow = datetime.utcnow().timestamp()
         full = (curses.LINES - 8)//2
         width = curses.COLS - 4
         if pos >= start+full:
