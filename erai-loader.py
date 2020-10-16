@@ -41,9 +41,11 @@ def loadfeed():
         r = 'all'
     else:
         r = sys.argv[1]
-    if not r in ['480', '720', '1080', 'all']:
+    if not r in ['480', '720', '1080', 'movies-480', 'movies-720', 'movies-1080',
+            'batch-480', 'batch-720', 'batch-1080',
+            'raws-720', 'raws-1080', 'encoded-720', 'encoded-1080', 'all']:
         raise Exception('Invalid resolution')
-    url = 'https://www.erai-rss.info/rss-%s/'%r
+    url = 'https://www.erai-raws.info/rss-%s/'%r
     feed = feedparser.parse(url)
     return feed
 
